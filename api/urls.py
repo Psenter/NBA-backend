@@ -25,6 +25,5 @@ router.register(r'Teams', views.TeamsViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('NBAStats.urls')),
     path('', include(router.urls)),
 ]

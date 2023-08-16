@@ -13,16 +13,16 @@ class Players(models.Model):
     position = models.CharField(max_length=200)
     weight = models.FloatField
     height = models.CharField(max_length=200)
-    ppg = models.FloatField
-    apg = models.FloatField
-    rpg = models.FloatField
-    spg = models.FloatField
-    bpg = models.FloatField
-    field_goal_percent = models.FloatField
-    three_pointer_percent = models.FloatField
-    free_throw_percent = models.FloatField
-    turnovers = models.FloatField
-    minutes_played = models.FloatField
+    ppg = models.FloatField()
+    apg = models.FloatField()
+    rpg = models.FloatField()
+    spg = models.FloatField()
+    bpg = models.FloatField()
+    field_goal_percent = models.FloatField()
+    three_pointer_percent = models.FloatField()
+    free_throw_percent = models.FloatField()
+    turnovers = models.FloatField()
+    minutes_played = models.FloatField()
     media_id = models.ForeignKey('Media', on_delete=models.PROTECT, null=True)
 
     def __str__(self):
@@ -30,8 +30,8 @@ class Players(models.Model):
 
 class Teams(models.Model):
     team_name = models.CharField(max_length=200)
-    wins = models.IntegerField
-    losses = models.IntegerField
+    wins = models.IntegerField()
+    losses = models.IntegerField()
     conference_id = models.ForeignKey('conference', on_delete=models.PROTECT, null=True)
     media_id = models.ForeignKey('Media', on_delete=models.PROTECT, null=True)
     players = models.ManyToManyField('Players')
@@ -47,7 +47,7 @@ class Conference(models.Model):
     
 class Media(models.Model):
     type = models.CharField(max_length=200)
-    asset_url = models.URLField
+    asset_url = models.URLField()
 
     def __str__(self):
         return self.title

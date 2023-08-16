@@ -10,8 +10,9 @@ class CustomUser(AbstractUser):
 class Players(models.Model):
     first_name = models.CharField(max_length=200)
     last_name = models.CharField(max_length=200)
+    jersey_number = models.CharField(max_length=200, null=True)
     position = models.CharField(max_length=200)
-    weight = models.FloatField
+    weight = models.FloatField()
     height = models.CharField(max_length=200)
     ppg = models.FloatField()
     apg = models.FloatField()
@@ -26,7 +27,7 @@ class Players(models.Model):
     #media_id = models.ForeignKey('Media', on_delete=models.PROTECT, null=True)
 
     def __str__(self):
-        return self.title
+        return f"{self.first_name} {self.last_name}"
 
 class Teams(models.Model):
     team_name = models.CharField(max_length=200)

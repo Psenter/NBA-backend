@@ -25,3 +25,11 @@ class UserDetail(generics.RetrieveAPIView):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     queryset = CustomUser.objects.all()
     serializer_class = CustomUserSerializer
+
+class PlayersViewSet(viewsets.ModelViewSet):
+    queryset = Players.objects.all()
+    serializer_class = PlayersSerializer
+
+class TeamsViewSet(viewsets.ModelViewSet):
+    queryset = Teams.objects.all()
+    serializer_class = TeamSerializer

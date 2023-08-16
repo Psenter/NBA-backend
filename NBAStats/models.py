@@ -23,7 +23,7 @@ class Players(models.Model):
     free_throw_percent = models.FloatField()
     turnovers = models.FloatField()
     minutes_played = models.FloatField()
-    media_id = models.ForeignKey('Media', on_delete=models.PROTECT, null=True)
+    #media_id = models.ForeignKey('Media', on_delete=models.PROTECT, null=True)
 
     def __str__(self):
         return self.title
@@ -33,7 +33,7 @@ class Teams(models.Model):
     wins = models.IntegerField()
     losses = models.IntegerField()
     conference_id = models.ForeignKey('conference', on_delete=models.PROTECT, null=True)
-    media_id = models.ForeignKey('Media', on_delete=models.PROTECT, null=True)
+    #media_id = models.ForeignKey('Media', on_delete=models.PROTECT, null=True)
     players = models.ManyToManyField('Players')
 
     def __str__(self):
@@ -43,7 +43,7 @@ class Conference(models.Model):
     conference_location = models.CharField(max_length=200)
 
     def __str__(self):
-        return self.title
+        return self.conference_location
     
 class Media(models.Model):
     type = models.CharField(max_length=200)

@@ -33,7 +33,6 @@ class Command(BaseCommand):
                 minutes_played=item.get('MinutesPerGame', 0.0)
             )
 
-            # Add the player to the team using the many-to-many relationship
             team.players.add(player)
 
             self.stdout.write(self.style.SUCCESS(f'Successfully added {player} to {team_name}'))

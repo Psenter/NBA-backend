@@ -1,7 +1,7 @@
 import json
 import requests
 from django.core.management.base import BaseCommand
-from NBAStats.models import Players
+from NBAStats.models import Players, Teams
 
 class Command(BaseCommand):
 
@@ -11,6 +11,9 @@ class Command(BaseCommand):
         data = response.json()
 
         for item in data:
+            team_name = item.get('Team', '')
+            team, created = Teams.objects.get_or_create(team_name=team_name, defaults={'wins': 0, 'losses': 0})
+
             player = Players.objects.create(
                 first_name=item.get('FirstName', ''),
                 last_name=item.get('LastName', ''),
@@ -30,4 +33,7 @@ class Command(BaseCommand):
                 minutes_played=item.get('MinutesPerGame', 0.0)
             )
 
-            self.stdout.write(self.style.SUCCESS(f'Successfully added {player}'))
+            # Add the player to the team using the many-to-many relationship
+            team.players.add(player)
+
+            self.stdout.write(self.style.SUCCESS(f'Successfully added {player} to {team_name}'))

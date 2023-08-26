@@ -38,7 +38,7 @@ class Teams(models.Model):
     players = models.ManyToManyField('Players')
 
     def __str__(self):
-        return self.title
+        return self.team_name
 
 class Conference(models.Model):
     conference_location = models.CharField(max_length=200)
@@ -52,3 +52,10 @@ class Media(models.Model):
 
     def __str__(self):
         return self.asset_url
+    
+class FavoriteTeams(models.Model):
+    user_id = models.ForeignKey('CustomUser', on_delete=models.PROTECT)
+    team_id = models.ForeignKey('Teams', on_delete=models.PROTECT)
+
+    def __str__(self):
+        return f"{self.user.username} - {self.team.team_name}"

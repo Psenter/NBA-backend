@@ -35,3 +35,8 @@ class MediaSerialzer(serializers.ModelSerializer):
     class Meta:
         model = Media
         fields = '__all__'
+
+class FavoriteTeamsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = FavoriteTeams
+        fields = '__all__'

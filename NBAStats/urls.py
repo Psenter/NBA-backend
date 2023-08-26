@@ -7,7 +7,7 @@ router = routers.DefaultRouter()
 router.register(r'Players', PlayersViewSet)
 router.register(r'Teams', TeamsViewSet)
 router.register(r'Media', MediaViewSet)
-
+router.register(r'FavoriteTeams', FavoriteTeamsViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),

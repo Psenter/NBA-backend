@@ -42,3 +42,7 @@ class MediaViewSet(viewsets.ModelViewSet):
 class FavoriteTeamsViewSet(viewsets.ModelViewSet):
     queryset = FavoriteTeams.objects.all()
     serializer_class = FavoriteTeamsSerializer
+
+class FavoritePlayersViewSet(viewsets.ModelViewSet):
+    queryset = FavoritePlayers.objects.all()
+    serializer_class = FavoritePlayerSerializer

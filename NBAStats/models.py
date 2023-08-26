@@ -59,3 +59,10 @@ class FavoriteTeams(models.Model):
 
     def __str__(self):
         return f"{self.user.username} - {self.team.team_name}"
+    
+class FavoritePlayers(models.Model):
+    user_id = models.ForeignKey('CustomUser', on_delete=models.PROTECT)
+    player_id = models.ForeignKey('Teams', on_delete=models.PROTECT)
+
+    def __str__(self):
+        return f"{self.user.username} - {self.player.first_name} - {self.player.last_name}"

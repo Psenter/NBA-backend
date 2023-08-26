@@ -1,11 +1,13 @@
-"""
 from django.urls import path, include
 from rest_framework_simplejwt import views as jwt_views
 from rest_framework import routers
 from .views import *
 
 router = routers.DefaultRouter()
-#router.register(r'', )
+router.register(r'Players', PlayersViewSet)
+router.register(r'Teams', TeamsViewSet)
+router.register(r'Media', MediaViewSet)
+router.register(r'FavoriteTeams', FavoriteTeamsViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
@@ -13,5 +15,5 @@ urlpatterns = [
     path('users/<int:pk>/', UserDetail.as_view(), name="get_user_details"),
     path('user/login/', jwt_views.TokenObtainPairView.as_view(), name='token_create'),
     path('token/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
-"""

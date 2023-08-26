@@ -34,11 +34,11 @@ class Teams(models.Model):
     wins = models.IntegerField()
     losses = models.IntegerField()
     conference_id = models.ForeignKey('conference', on_delete=models.PROTECT, null=True)
-    #media_id = models.ForeignKey('Media', on_delete=models.PROTECT, null=True)
+    media_id = models.ForeignKey('Media', on_delete=models.PROTECT, null=True)
     players = models.ManyToManyField('Players')
 
     def __str__(self):
-        return self.title
+        return self.team_name
 
 class Conference(models.Model):
     conference_location = models.CharField(max_length=200)
@@ -51,4 +51,11 @@ class Media(models.Model):
     asset_url = models.URLField()
 
     def __str__(self):
-        return self.title
+        return self.asset_url
+    
+class FavoriteTeams(models.Model):
+    user_id = models.ForeignKey('CustomUser', on_delete=models.PROTECT)
+    team_id = models.ForeignKey('Teams', on_delete=models.PROTECT)
+
+    def __str__(self):
+        return f"{self.user.username} - {self.team.team_name}"

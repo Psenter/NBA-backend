@@ -21,6 +21,7 @@ class UserCreate(APIView):
                 json = serializer.data
                 return Response(json, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
 class UserDetail(generics.RetrieveAPIView):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     queryset = CustomUser.objects.all()
@@ -33,3 +34,11 @@ class PlayersViewSet(viewsets.ModelViewSet):
 class TeamsViewSet(viewsets.ModelViewSet):
     queryset = Teams.objects.all()
     serializer_class = TeamSerializer
+
+class MediaViewSet(viewsets.ModelViewSet):
+    queryset = Media.objects.all()
+    serializer_class = MediaSerialzer
+
+class FavoriteTeamsViewSet(viewsets.ModelViewSet):
+    queryset = FavoriteTeams.objects.all()
+    serializer_class = FavoriteTeamsSerializer

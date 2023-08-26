@@ -21,7 +21,6 @@ class CustomUserSerializer(serializers.ModelSerializer):
         instance.save()
         return instance
     
-
 class PlayersSerializer(serializers.ModelSerializer):
     class Meta:
         model = Players
@@ -30,4 +29,14 @@ class PlayersSerializer(serializers.ModelSerializer):
 class TeamSerializer(serializers.ModelSerializer):
     class Meta:
         model = Teams
+        fields = '__all__'
+
+class MediaSerialzer(serializers.ModelSerializer):
+    class Meta:
+        model = Media
+        fields = '__all__'
+
+class FavoriteTeamsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = FavoriteTeams
         fields = '__all__'

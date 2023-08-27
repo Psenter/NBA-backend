@@ -45,3 +45,8 @@ class FavoritePlayerSerializer(serializers.ModelSerializer):
     class Meta:
         model = FavoritePlayers
         fields = '__all__'
+
+class GameSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Game
+        fields = '__all__'

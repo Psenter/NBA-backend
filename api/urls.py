@@ -23,4 +23,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('NBAStats.urls')),
     path('', include(router.urls)),
+    path('api/games/', create_game, name='create-game'),
 ]

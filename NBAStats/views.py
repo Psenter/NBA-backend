@@ -9,6 +9,11 @@ from rest_framework.decorators import action
 from .models import *
 from .serializers import *
 from django.db.models import Sum
+from rest_framework import status
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from .models import Game
+from .serializers import GameSerializer
 
 class UserCreate(APIView):
     permission_classes = (permissions.AllowAny,)
@@ -21,6 +26,15 @@ class UserCreate(APIView):
                 json = serializer.data
                 return Response(json, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+@api_view(['POST'])
+def create_game(request):
+    serializer = GameSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
     
 class UserDetail(generics.RetrieveAPIView):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
@@ -46,3 +60,7 @@ class FavoriteTeamsViewSet(viewsets.ModelViewSet):
 class FavoritePlayersViewSet(viewsets.ModelViewSet):
     queryset = FavoritePlayers.objects.all()
     serializer_class = FavoritePlayerSerializer
+
+class GameViewSet(viewsets.ModelViewSet):
+    queryset = Game.objects.all()
+    serializer_class = GameSerializer
